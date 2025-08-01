@@ -1,5 +1,5 @@
+/* eslint-disable no-unused-vars */
 import { useEffect, useRef, useState } from "react"
-// eslint-disable-next-line import/no-unresolved
 import { motion } from "framer-motion"
 import "./TrueFocusTitle.css"
 

@@ -17,7 +17,6 @@ const WeatherDetail = () => {
         setLoading(true)
         setError(null)
 
-        // Fetch current weather
         const currentResponse = await fetch(
           `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric&lang=it`
         )
@@ -29,7 +28,6 @@ const WeatherDetail = () => {
         const currentData = await currentResponse.json()
         setCurrentWeather(currentData)
 
-        // Fetch 5-day forecast
         const forecastResponse = await fetch(
           `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${API_KEY}&units=metric&lang=it`
         )
@@ -40,7 +38,6 @@ const WeatherDetail = () => {
 
         const forecastData = await forecastResponse.json()
 
-        // Group forecast by day (one forecast per day)
         const dailyForecasts = []
         const forecastMap = {}
 
@@ -53,7 +50,6 @@ const WeatherDetail = () => {
           }
         })
 
-        // Keep only the next 5 days
         setForecast(dailyForecasts.slice(0, 5))
       } catch (err) {
         setError(err.message)
