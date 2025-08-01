@@ -23,45 +23,68 @@
   position: relative;
   z-index: 1;
   width: 100%;
+  background: rgba(30, 30, 40, 0.25);
+  border-radius: 32px;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1.5px solid rgba(255, 255, 255, 0.18);
 }
 
 .search-input {
   width: 75%;
-  padding: 14px 20px;
-  border-radius: 8px 0 0 8px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  font-size: 1rem;
-  background-color: #2a2a2a;
+  padding: 18px 24px;
+  border-radius: 32px 0 0 32px;
+  border: none;
+  font-size: 1.1rem;
+  background: transparent;
   color: white;
-  transition: all 0.2s ease;
+  outline: none;
+  box-shadow: none;
 }
 
 .search-input::placeholder {
-  color: rgba(255, 255, 255, 0.4);
-}
-
-.search-input:focus {
-  outline: none;
-  background-color: #333333;
-  border-color: rgba(100, 181, 246, 0.5);
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .search-button {
-  width: 25%;
-  padding: 14px 20px;
-  border-radius: 0 8px 8px 0;
-  border: 1px solid rgba(100, 181, 246, 0.5);
-  border-left: none;
-  background-color: #1976d2;
+  width: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0 32px 32px 0;
+  border: none;
+  background: transparent;
   color: white;
-  font-size: 1rem;
-  font-weight: 500;
+  font-size: 1.3rem;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: background 0.2s;
 }
 
 .search-button:hover {
-  background-color: #1565c0;
+  background: transparent;
+}
+
+.search-button svg {
+  transition: transform 0.2s, color 0.2s;
+}
+
+.search-button:hover svg {
+  transform: scale(1.18) rotate(-10deg);
+  color: #1976d2;
+}
+
+.search-button:active {
+  transform: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  color: inherit !important;
+}
+
+.search-button:focus,
+.search-button:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
 }
 
 .popular-cities {
@@ -71,6 +94,7 @@
 
 .popular-label {
   font-size: 0.85rem;
+  font-family: "Roboto", sans-serif;
   color: rgba(255, 255, 255, 0.5);
   margin-bottom: 1rem;
   letter-spacing: 1px;
@@ -85,7 +109,7 @@
 
 .city-chip {
   padding: 8px 16px;
-  background: rgba(255, 255, 255, 0.08);
+  background: transparent;
   border-radius: 20px;
   border: 1px solid rgba(255, 255, 255, 0.1);
   color: rgba(255, 255, 255, 0.8);
@@ -131,7 +155,7 @@
 }
 
 .city-chip:hover {
-  background: #333333;
+  background: transparent;
   transform: translateY(-2px);
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
   color: white;
@@ -142,6 +166,8 @@
 }
 
 .back-link {
+  z-index: 1000;
+  position: relative;
   display: inline-flex;
   align-items: center;
   margin-bottom: 1.5rem;
@@ -163,7 +189,7 @@
 }
 
 .weather-card {
-  background: #222222;
+  background: transparent;
   border-radius: 12px;
   padding: 2rem;
   margin: 1.5rem 0;
@@ -234,7 +260,7 @@
   gap: 2rem;
   margin: 2rem 0;
   padding: 1.5rem;
-  background: rgba(255, 255, 255, 0.05);
+  background: transparent;
   border-radius: 12px;
 }
 
@@ -308,7 +334,7 @@
   flex: 1 1 calc(20% - 1.2rem);
   min-width: 150px;
   max-width: calc(20% - 1.2rem);
-  background: rgba(34, 34, 34, 0.7);
+  background: transparent;
   border-radius: 12px;
   padding: 1.5rem 1rem;
   display: flex;
@@ -318,6 +344,13 @@
   border: 1px solid rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(10px);
   margin-bottom: 1rem;
+}
+
+.home-title {
+  font-family: "Roboto", sans-serif;
+  font-size: 5rem;
+  font-weight: 700;
+  color: white;
 }
 
 .forecast-item:hover {

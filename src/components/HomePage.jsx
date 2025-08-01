@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
+import { Search } from "react-bootstrap-icons"
 
 const HomePage = () => {
   const [city, setCity] = useState("")
@@ -16,7 +17,7 @@ const HomePage = () => {
 
   return (
     <div className="home-container">
-      <h1>Meteo App</h1>
+      <h1 className="home-title">Epsy Meteo</h1>
 
       <form onSubmit={handleSearch} className="search-container">
         <input
@@ -27,7 +28,7 @@ const HomePage = () => {
           onChange={(e) => setCity(e.target.value)}
         />
         <button type="submit" className="search-button">
-          Cerca
+          <Search size={22} />
         </button>
       </form>
 
