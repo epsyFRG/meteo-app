@@ -33,7 +33,7 @@ const HomePage = () => {
         animationDuration={2}
         pauseBetweenAnimations={1}
       >
-        Meteo Vibrance
+        Epsy Meteo
       </TrueFocusTitle>
 
       <form onSubmit={handleSearch} className="search-container">
