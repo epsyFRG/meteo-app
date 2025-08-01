@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react"
+import { ArrowLeft } from "react-bootstrap-icons"
 import { useParams, Link } from "react-router-dom"
 
 const API_KEY = "32c017994027bf371c0a54146e96096f"
@@ -82,7 +83,7 @@ const WeatherDetail = () => {
   return (
     <div className="weather-detail-container">
       <Link to="/" className="back-link">
-        ← Torna alla ricerca
+        <ArrowLeft size={24} />
       </Link>
 
       {currentWeather && (

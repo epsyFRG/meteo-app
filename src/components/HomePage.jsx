@@ -1,12 +1,20 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { Search } from "react-bootstrap-icons"
+import TrueFocusTitle from "./TrueFocusTitle"
+import ShinyText from "./ShinyText"
 
 const HomePage = () => {
   const [city, setCity] = useState("")
   const navigate = useNavigate()
 
-  const popularCities = ["Roma", "Milano", "Napoli", "Torino", "Firenze"]
+  const popularCities = [
+    { name: "Roma", query: "Roma,it" },
+    { name: "Milano", query: "Milano,it" },
+    { name: "Napoli", query: "Napoli,it" },
+    { name: "Torino", query: "Torino,it" },
+    { name: "Firenze", query: "Firenze,it" },
+  ]
 
   const handleSearch = (e) => {
     e.preventDefault()
@@ -17,7 +25,16 @@ const HomePage = () => {
 
   return (
     <div className="home-container">
-      <h1 className="home-title">Epsy Meteo</h1>
+      <TrueFocusTitle
+        sentence="Epsy Meteo"
+        manualMode={false}
+        blurAmount={5}
+        borderColor="#0F52BA"
+        animationDuration={2}
+        pauseBetweenAnimations={1}
+      >
+        Meteo Vibrance
+      </TrueFocusTitle>
 
       <form onSubmit={handleSearch} className="search-container">
         <input
@@ -35,13 +52,18 @@ const HomePage = () => {
       <div className="popular-cities">
         <p className="popular-label">CITTÀ POPOLARI</p>
         <div className="city-chips">
-          {popularCities.map((cityName) => (
+          {popularCities.map(({ name, query }) => (
             <button
-              key={cityName}
+              key={name}
               className="city-chip"
-              onClick={() => navigate(`/weather/${cityName}`)}
+              onClick={() => navigate(`/weather/${query}`)}
             >
-              {cityName}
+              <ShinyText
+                text={name}
+                disabled={false}
+                speed={3}
+                className="custom-class"
+              />
             </button>
           ))}
         </div>
