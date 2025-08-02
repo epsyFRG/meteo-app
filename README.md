@@ -1,12 +1,16 @@
-# React + Vite
+## 📦 Consegna
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
+Dovrai creare una nuova applicazione per controllare il meteo in giro per il mondo!
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Funzionalità
 
-## Expanding the ESLint configuration
+L'utente dovrà essere in grado di selezionare la città e ricevere le informazioni sul tempo (pioverà?, temperatura?, prossimi giorni?)Dovrai usare le Open Weather API per costruire il tuo sito del Meteo personale!
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Pensa all'interfaccia, i componenti di cui hai bisogno e comincia a creare la migliore app del meteo possibile!
+
+Avrai bisogno:
+
+- una homepage dove ricavare il nome della città tramite un input
+
+- una pagina dettaglio dove visualizzare: meteo e previsioni dei 5 giorni successivi
