@@ -686,6 +686,12 @@
   transform: scale(1.1);
 }
 
+.forecast-temp-range {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 0.5rem;
+}
+
 .forecast-temp {
   font-size: 1.6rem;
   font-weight: 700;

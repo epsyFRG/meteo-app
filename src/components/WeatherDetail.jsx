@@ -38,19 +38,87 @@ const WeatherDetail = () => {
 
         const forecastData = await forecastResponse.json()
 
-        const dailyForecasts = []
-        const forecastMap = {}
+        const today = new Date()
+        const todayDateString = today.toDateString()
+
+        const dailyData = {}
 
         forecastData.list.forEach((item) => {
-          const date = new Date(item.dt * 1000).toLocaleDateString()
+          const itemDate = new Date(item.dt * 1000)
+          const dateString = itemDate.toDateString()
 
-          if (!forecastMap[date]) {
-            forecastMap[date] = item
-            dailyForecasts.push(item)
+          if (dateString === todayDateString) {
+            return
+          }
+
+          if (!dailyData[dateString]) {
+            dailyData[dateString] = {
+              items: [],
+              date: itemDate,
+              midDayItem: null,
+            }
+          }
+
+          dailyData[dateString].items.push(item)
+
+          const hour = itemDate.getHours()
+          if (hour >= 12 && hour <= 15) {
+            if (
+              !dailyData[dateString].midDayItem ||
+              Math.abs(hour - 12) <
+                Math.abs(
+                  new Date(
+                    dailyData[dateString].midDayItem.dt * 1000
+                  ).getHours() - 12
+                )
+            ) {
+              dailyData[dateString].midDayItem = item
+            }
           }
         })
 
-        setForecast(dailyForecasts.slice(0, 5))
+        const sortedDates = Object.keys(dailyData).sort(
+          (a, b) => new Date(a) - new Date(b)
+        )
+
+        const dailyForecasts = sortedDates.slice(0, 5).map((dateString) => {
+          const dayData = dailyData[dateString]
+
+          if (dayData.midDayItem) {
+            return {
+              ...dayData.midDayItem,
+              main: {
+                ...dayData.midDayItem.main,
+                temp_min: Math.min(
+                  ...dayData.items.map((item) => item.main.temp_min)
+                ),
+                temp_max: Math.max(
+                  ...dayData.items.map((item) => item.main.temp_max)
+                ),
+              },
+            }
+          } else {
+            const avgTemp =
+              dayData.items.reduce((sum, item) => sum + item.main.temp, 0) /
+              dayData.items.length
+            const firstItem = dayData.items[0]
+            return {
+              ...firstItem,
+              main: {
+                ...firstItem.main,
+                temp: avgTemp,
+                temp_min: Math.min(
+                  ...dayData.items.map((item) => item.main.temp_min)
+                ),
+                temp_max: Math.max(
+                  ...dayData.items.map((item) => item.main.temp_max)
+                ),
+              },
+            }
+          }
+        })
+
+        setForecast(dailyForecasts)
       } catch (err) {
         setError(err.message)
       } finally {
@@ -146,6 +214,10 @@ const WeatherDetail = () => {
                 />
                 <div className="forecast-temp">
                   {Math.round(day.main.temp)}°C
+                </div>
+                <div className="forecast-temp-range">
+                  {Math.round(day.main.temp_min)}° /{" "}
+                  {Math.round(day.main.temp_max)}°
                 </div>
                 <div className="forecast-description">
                   {day.weather[0].description}
